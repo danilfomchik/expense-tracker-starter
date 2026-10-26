@@ -2,12 +2,12 @@ import { Bar, BarChart, CartesianGrid, LabelList, Rectangle, ResponsiveContainer
 
 // Fixed color per category so a bar keeps its color when the list re-sorts
 const CATEGORY_COLORS = {
-  food: "#2a78d6",
-  housing: "#eb6834",
-  utilities: "#1baf7a",
-  transport: "#eda100",
-  entertainment: "#e87ba4",
-  other: "#008300",
+  food: "#c9922e",
+  housing: "#8c3f31",
+  utilities: "#4d6a78",
+  transport: "#6b6f5a",
+  entertainment: "#8a5a74",
+  other: "#5c5a55",
 };
 
 const CategoryBar = (props) => (
@@ -30,16 +30,22 @@ function SpendingChart({ transactions }) {
     <div className="spending-chart">
       <h2>Spending by Category</h2>
       {data.length === 0 ? (
-        <p className="empty">No expenses yet.</p>
+        <p className="empty">No expenses yet. Add one below to see where your money goes.</p>
       ) : (
         <ResponsiveContainer width="100%" height={data.length * 40 + 40}>
           <BarChart data={data} layout="vertical" margin={{ top: 5, right: 50, left: 10, bottom: 5 }}>
-            <CartesianGrid horizontal={false} stroke="#eee" />
+            <CartesianGrid horizontal={false} stroke="#d4d0c8" />
             <XAxis type="number" hide />
-            <YAxis type="category" dataKey="category" width={100} tickLine={false} axisLine={false} />
-            <Tooltip formatter={(value) => [`$${value}`, "Spent"]} cursor={{ fill: "#f5f5f5" }} />
-            <Bar dataKey="amount" shape={CategoryBar} radius={[0, 4, 4, 0]} barSize={20}>
-              <LabelList dataKey="amount" position="right" formatter={(value) => `$${value}`} />
+            <YAxis type="category" dataKey="category" width={100} tickLine={false} axisLine={false} tick={{ fill: "#26282b", fontSize: 14 }} />
+            <Tooltip
+              formatter={(value) => [`$${value}`, "Spent"]}
+              cursor={{ fill: "#e4e1da" }}
+              contentStyle={{ background: "#26282b", border: "none", borderRadius: 0 }}
+              itemStyle={{ color: "#ece9e2" }}
+              labelStyle={{ color: "#c9922e" }}
+            />
+            <Bar dataKey="amount" shape={CategoryBar} barSize={20}>
+              <LabelList dataKey="amount" position="right" formatter={(value) => `$${value}`} fill="#26282b" fontWeight={600} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>

@@ -35,6 +35,7 @@ function TransactionList({ transactions, categories, onDelete }) {
         </select>
       </div>
 
+      <div className="table-wrap">
       <table>
         <thead>
           <tr>
@@ -42,15 +43,18 @@ function TransactionList({ transactions, categories, onDelete }) {
             <th>Description</th>
             <th>Category</th>
             <th>Amount</th>
-            <th></th>
+            <th><span className="sr-only">Actions</span></th>
           </tr>
         </thead>
         <tbody>
+          {filteredTransactions.length === 0 && (
+            <tr><td colSpan={5} className="empty">No transactions match these filters. Change a filter to see more.</td></tr>
+          )}
           {filteredTransactions.map(t => (
             <tr key={t.id}>
               <td>{t.date}</td>
               <td>{t.description}</td>
-              <td>{t.category}</td>
+              <td><span className="tag">{t.category}</span></td>
               <td className={t.type === "income" ? "income-amount" : "expense-amount"}>
                 {t.type === "income" ? "+" : "-"}${t.amount}
               </td>
@@ -61,6 +65,7 @@ function TransactionList({ transactions, categories, onDelete }) {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

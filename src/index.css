@@ -1,3 +1,17 @@
+:root {
+  --concrete: #d9d6cf;
+  --concrete-dark: #c7c3ba;
+  --plaster: #ece9e2;
+  --steel: #26282b;
+  --steel-soft: #4a4d52;
+  --brick: #8c3f31;
+  --bulb: #c9922e;
+  --patina: #3f6350;
+
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +19,26 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #333;
+  font-family: var(--font-body);
+  background-color: var(--concrete);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.35), transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(0, 0, 0, 0.06), transparent 45%);
+  background-attachment: fixed;
+  color: var(--steel);
+  line-height: 1.5;
+}
+
+:focus-visible {
+  outline: 3px solid var(--bulb);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
